@@ -40,7 +40,7 @@ const openai = new OpenAIApi(configuration);
 
 const readPythonFile = async (file: string) => await readFile(file, "utf8");
 const writeTsFile = async (file: string, content?: string) => {
-  return await writeFile(file, `${content}`);
+  return await writeFile(file, String(content));
 };
 
 const searchGlob = "./" + path.normalize(inputGlob).replaceAll("\\", "/");
@@ -49,7 +49,7 @@ console.log(chalk.bgGray(searchGlob));
 const g = new Glob(searchGlob, { cwd, absolute: true });
 
 for await (const file of g) {
-  console.log("🔎 ", chalk.magenta(file));
+  console.log("\n🔎 ", chalk.magenta(file));
 
   const relpath = "." + path.normalize(file).replace(path.normalize(cwd), "");
   log({ "Relative Path": relpath });
@@ -58,7 +58,7 @@ for await (const file of g) {
   try {
     const filename = path.basename(file);
     const outfile = filename.replace(".py", ".ts");
-    const newRelPath = relpath.replace("input/", "").replace(filename, "");
+    const newRelPath = relpath.replace("input", "").replace(filename, "");
     const outdir = path.join(cwd, "output", newRelPath);
 
     if (!existsSync(outdir)) {
@@ -67,8 +67,11 @@ for await (const file of g) {
     }
 
     const tsFileToWrite = path.join(outdir, outfile);
+    log({ "Target Output": tsFileToWrite });
 
     if (!existsSync(tsFileToWrite)) {
+      console.log(chalk.green("Sending code to ChatGPT"));
+
       const { data: res } = await openai.createChatCompletion({
         model: "gpt-3.5-turbo-16k-0613",
         max_tokens: 4000,

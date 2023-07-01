@@ -17,9 +17,7 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "convert": "tsx index.ts",
-    "init:repo": "tsx ./scripts/init-ts-repo.ts",
-    "start": "pnpm convert ./**/*.py"
+    "start": "tsx index.ts"
   },
   "dependencies": {
     "axios": "^0.26.0",
