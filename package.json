@@ -1,0 +1,47 @@
+{
+  "name": "chatgpt-py2ts",
+  "version": "1.0.0",
+  "description": "Convert Python files to Typescript with ChatGPT",
+  "keywords": [
+    "chatgpt",
+    "python",
+    "typescript",
+    "transpile",
+    "convert"
+  ],
+  "license": "MIT",
+  "author": {
+    "name": "Kevin Hill",
+    "email": "kevin.hill@fortunabmc.com"
+  },
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "convert": "tsx index.ts",
+    "init:repo": "tsx ./scripts/init-ts-repo.ts",
+    "start": "pnpm convert ./**/*.py"
+  },
+  "dependencies": {
+    "axios": "^0.26.0",
+    "chalk": "^5.3.0",
+    "chatgpt": "^5.2.5",
+    "dotenv": "^16.3.1",
+    "glob": "^10.3.1",
+    "openai": "^3.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.3.2",
+    "@typescript-eslint/eslint-plugin": "^5.60.1",
+    "@typescript-eslint/parser": "^5.60.1",
+    "eslint": "^8.43.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-import-resolver-typescript": "^3.5.5",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-simple-import-sort": "^10.0.0",
+    "prettier": "^2.8.8",
+    "tsx": "^3.12.7",
+    "typescript": "^5.1.6"
+  },
+  "packageManager": "pnpm@8.6.3"
+}

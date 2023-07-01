@@ -1,0 +1,10 @@
+node_modules
+.vscode
+
+# Ignore input folders
+input/**/*
+
+# Don't keep the outputs
+output/*
+
+.env
